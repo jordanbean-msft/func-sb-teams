@@ -1,0 +1,5 @@
+resource_group_name  = "rg-funcSbTeams-ussc-dev"
+region               = "ussc"
+environment          = "dev"
+location             = "South Central US"
+app_service_plan_sku = "Y1"

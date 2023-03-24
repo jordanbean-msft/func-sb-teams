@@ -1,0 +1,5 @@
+parameters:
+  - name: webAppSolutionName
+
+variables:
+  pathToSolutionFile: '$(System.DefaultWorkingDirectory)/src/demoWebApp/${{ parameters.webAppSolutionName }}.sln'

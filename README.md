@@ -13,4 +13,30 @@
 
 ## Deployment
 
+1.  Modify the `infra/env/dev.tfvars` file to match your environment
+
+1.  Initialize Terraform locally
+
+    ```shell
+    terraform init
+    ```
+
+1.  Format the Terraform code
+
+    ```shell
+    terraform fmt
+    ```
+
+1.  Create a Terraform plan
+
+    ```shell
+    terraform plan --var-file ./env/dev.tfvars
+    ```
+
+1.  Apply the Terraform plan
+
+    ```shell
+    terraform apply --var-file ./env/dev.tfvars
+    ```
+
 ## Links

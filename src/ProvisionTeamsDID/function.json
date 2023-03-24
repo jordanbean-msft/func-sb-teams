@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "name": "serviceBusProvisionTeamsDiDMessage",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "provision-teams-did",
+      "subscriptionName": "provision-teams-did-subscription",
+      "connection": "ServiceBusConnectionString"
+    }
+  ]
+}
