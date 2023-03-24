@@ -1,8 +1,10 @@
 param([object] $serviceBusProvisionTeamsDiDMessage, $TriggerMetadata)
 
-Write-Information $serviceBusProvisionTeamsDiDMessage.FirstName
-Write-Information $serviceBusProvisionTeamsDiDMessage.LastName
-Write-Information $serviceBusProvisionTeamsDiDMessage.Location
+$ErrorActionPreference = "Stop"
+
+Write-Information $serviceBusProvisionTeamsDiDMessage.UserPrincipalName
+Write-Information $serviceBusProvisionTeamsDiDMessage.TeamName
+Write-Information $serviceBusProvisionTeamsDiDMessage.ChannelName
 
 $clientSecret = $env:AzureAdClientSecret
 $applicationId = $env:AzureAdClientId
@@ -35,3 +37,26 @@ Write-Information "Connecting to Microsoft Teams API..."
 Connect-MicrosoftTeams -AccessTokens @("$graphToken", "$teamsToken")
 
 Write-Information "Connected to Microsoft Teams API"
+
+Write-Information "Creating team $(${serviceBusProvisionTeamsDiDMessage}.TeamName)..."
+
+$group = New-Team -DisplayName $serviceBusProvisionTeamsDiDMessage.TeamName `
+  -Visibility Public `
+  -Owner $serviceBusProvisionTeamsDiDMessage.UserPrincipalName
+
+Write-Information "Created team $(${serviceBusProvisionTeamsDiDMessage}.TeamName)"
+
+Write-Information "Adding user $(${serviceBusProvisionTeamsDiDMessage}.UserPrincipalName) as owner..."
+
+Add-TeamUser -GroupId $group.GroupId `
+  -User $serviceBusProvisionTeamsDiDMessage.UserPrincipalName `
+  -Role Owner
+
+Write-Information "Added user $(${serviceBusProvisionTeamsDiDMessage}.UserPrincipalName) as owner"
+
+Write-Information "Creating channel $(${serviceBusProvisionTeamsDiDMessage}.ChannelName)..."
+
+New-TeamChannel -GroupId $group.GroupId `
+  -DisplayName $serviceBusProvisionTeamsDiDMessage.ChannelName
+
+Write-Information "Created channel $(${serviceBusProvisionTeamsDiDMessage}.ChannelName)"
