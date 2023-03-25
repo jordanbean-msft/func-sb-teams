@@ -1,9 +1,9 @@
 name: deploy-functionapp
 variables:
-  - template: ../../global.yml
-  - template: ../../bicep/env/dev.yml
-  # - template: ../../bicep/env/tst.yml
-  # - template: ../../bicep/env/prd.yml
+  - template: ../global.yml
+  - template: ../env/dev.yml
+  # - template: ../env/tst.yml
+  # - template: ../env/prd.yml
 trigger:
   branches:
     include:
