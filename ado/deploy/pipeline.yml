@@ -9,10 +9,8 @@ trigger:
     include:
       - main
   paths:
-    include:
-      - ../env/global.yml
-      - ./*
-      - ../../src/*
+    exclude:
+      - ../../infra/*
 stages:
   - stage: Dev
     jobs:
