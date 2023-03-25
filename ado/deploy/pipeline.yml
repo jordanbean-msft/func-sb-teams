@@ -29,24 +29,8 @@ stages:
                     artifactName: ${{ variables.artifactName }}
                     serviceConnectionName: ${{ variables.devServiceConnectionName }}
                     functionAppName: ${{ variables.devFunctionAppName }}
-  # - stage: Tst
-  #   dependsOn: Dev
-  #   jobs:
-  #   - deployment: Tst_Deploy
-  #     pool:
-  #       vmImage: 'windows-latest'
-  #     environment: ${{ variables.tstEnvironmentName }}
-  #     strategy:
-  #       runOnce:
-  #         deploy:
-  #           steps:
-  #           - template: deploy.yml
-  #             parameters:
-  #               artifactName: ${{ variables.artifactName }}
-  #               serviceConnectionName: ${{ variables.tstServiceConnectionName }}
-  #               functionAppName: ${{ variables.tstFunctionAppName }}
   # - stage: Prd
-  #   dependsOn: Tst
+  #   dependsOn: Dev
   #   jobs:
   #   - deployment: Prd_Deploy
   #     pool:
