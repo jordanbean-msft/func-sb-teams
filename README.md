@@ -1,6 +1,10 @@
-# template-repository
+# func-sb-teams
 
 ![architecture](./.img/architecture.png)
+
+This repo demonstrates how to use Azure Functions to provision a Microsoft Teams team and channel using the Microsoft Graph API. The function is triggered by a message on an Azure Service Bus queue. The function is written in PowerShell.
+
+The Infrastructure as Code (IaC) is written in Terraform.
 
 ## Disclaimer
 
@@ -10,6 +14,7 @@
 
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - Azure subscription & resource group
+- [Terraform](https://www.terraform.io/downloads.html)
 
 ## Deployment
 
