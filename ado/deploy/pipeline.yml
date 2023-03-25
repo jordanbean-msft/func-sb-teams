@@ -1,0 +1,63 @@
+name: deploy-functionapp
+variables:
+  - template: ../../global.yml
+  - template: ../../bicep/env/dev.yml
+  # - template: ../../bicep/env/tst.yml
+  # - template: ../../bicep/env/prd.yml
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - ../env/global.yml
+      - ./*
+      - ../../src/*
+stages:
+  - stage: Dev
+    jobs:
+      - deployment: Dev_Deploy
+        pool:
+          vmImage: "windows-latest"
+        environment: ${{ variables.devEnvironmentName }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: deploy.yml
+                  parameters:
+                    artifactName: ${{ variables.artifactName }}
+                    serviceConnectionName: ${{ variables.devServiceConnectionName }}
+                    functionAppName: ${{ variables.devFunctionAppName }}
+  # - stage: Tst
+  #   dependsOn: Dev
+  #   jobs:
+  #   - deployment: Tst_Deploy
+  #     pool:
+  #       vmImage: 'windows-latest'
+  #     environment: ${{ variables.tstEnvironmentName }}
+  #     strategy:
+  #       runOnce:
+  #         deploy:
+  #           steps:
+  #           - template: deploy.yml
+  #             parameters:
+  #               artifactName: ${{ variables.artifactName }}
+  #               serviceConnectionName: ${{ variables.tstServiceConnectionName }}
+  #               functionAppName: ${{ variables.tstFunctionAppName }}
+  # - stage: Prd
+  #   dependsOn: Tst
+  #   jobs:
+  #   - deployment: Prd_Deploy
+  #     pool:
+  #       vmImage: 'windows-latest'
+  #     environment: ${{ variables.prdEnvironmentName }}
+  #     strategy:
+  #       runOnce:
+  #         deploy:
+  #           steps:
+  #           - template: deploy.yml
+  #             parameters:
+  #               artifactName: ${{ variables.artifactName }}
+  #               serviceConnectionName: ${{ variables.prdServiceConnectionName }}
+  #               functionAppName: ${{ variables.functionAppName }}

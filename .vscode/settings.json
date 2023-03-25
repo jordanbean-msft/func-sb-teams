@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json": [
+      "file:///c%3A/Users/jordanbean/source/repos/func-sb-teams/ado/webApp/deploy/deploy.yml",
+      "file:///c%3A/Users/jordanbean/source/repos/func-sb-teams/ado/deploy/deploy.yml"
+    ]
+  }
+}

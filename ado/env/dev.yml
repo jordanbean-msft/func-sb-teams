@@ -1,0 +1,5 @@
+variables:
+  devEnvironmentName: dev
+  devResourceGroupName: rg-funcSbTeams-ussc-dev
+  devServiceConnectionName: rg-funcSbTeams-ussc-dev
+  devFunctionAppName: func-funcSbTeams-ussc-dev
