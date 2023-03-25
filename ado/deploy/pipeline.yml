@@ -1,6 +1,6 @@
 name: deploy-functionapp
 variables:
-  - template: ../global.yml
+  - template: ../env/global.yml
   - template: ../env/dev.yml
   # - template: ../env/tst.yml
   # - template: ../env/prd.yml
