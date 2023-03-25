@@ -4,6 +4,7 @@ parameters:
   - name: serviceConnectionName
 
 steps:
+  - checkout: self
   - template: ../printEnv.yml
   - task: ArchiveFiles@2
     displayName: "Archive files"
