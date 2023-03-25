@@ -5,7 +5,13 @@ $ErrorActionPreference = "Stop"
 Import-Module TeamsAuthentication
 Import-Module TeamsAutomation
 
-$graphToken, $teamsToken = Get-TeamsAccessTokens
+$clientSecret = $env:AzureAdClientSecret
+$applicationId = $env:AzureAdClientId
+$tenantId = $env:AzureAdTenantId
+
+$graphToken, $teamsToken = Get-TeamsAccessTokens -ApplicationId $applicationId `
+  -ClientSecret $clientSecret `
+  -TenantId $tenantId
 
 New-TeamsItems -GraphToken $graphToken `
   -TeamsToken $teamsToken `
