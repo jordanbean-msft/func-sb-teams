@@ -29,3 +29,8 @@ data "azurerm_key_vault_secret" "function_aad_service_principal_client_secret" {
   name         = var.function_aad_service_principal_client_secret_secret_name
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
+
+data "azurerm_app_service_environment_v3" "app_service_environment" {
+  name                = var.app_service_environment_name
+  resource_group_name = var.app_service_environment_resource_group_name
+}

@@ -7,7 +7,8 @@ variable "log_analytics_workspace_name" {}
 variable "application_insights_name" {}
 variable "key_vault_name" {}
 variable "user_assigned_identity_name" {}
-variable "app_service_plan_sku" {}
+variable "app_service_environment_resource_group_name" {}
+variable "app_service_environment_name" {}
 variable "function_aad_service_principal_client_id_secret_name" {}
 variable "function_aad_service_principal_client_secret_secret_name" {}
 

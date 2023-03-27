@@ -20,4 +20,9 @@ resource "azurerm_key_vault_secret" "serviceBusConnectionString" {
   name         = local.service_bus_connection_string_secret_name
   value        = azurerm_servicebus_namespace.serviceBusNamespace.default_primary_connection_string
   key_vault_id = data.azurerm_key_vault.key_vault.id
+
+  #prevents Terraform from overriting the value of the secret
+  lifecycle {
+    ignore_changes = [value]
+  }
 }

@@ -46,7 +46,8 @@ module "app" {
   application_insights_name                                = module.services.application_insights_name
   key_vault_name                                           = module.services.key_vault_name
   user_assigned_identity_name                              = module.services.user_assigned_identity_name
-  app_service_plan_sku                                     = var.app_service_plan_sku
+  app_service_environment_resource_group_name              = var.app_service_environment_resource_group_name
+  app_service_environment_name                             = var.app_service_environment_name
   function_aad_service_principal_client_id_secret_name     = module.services.function_aad_service_principal_client_id_secret_name
   function_aad_service_principal_client_secret_secret_name = module.services.function_aad_service_principal_client_secret_secret_name
 }
