@@ -1,4 +1,4 @@
-param([object] $serviceBusProvisionTeamsDiDMessage, $TriggerMetadata)
+param([System.Collections.Hashtable] $serviceBusProvisionTeamsDiDMessage, $TriggerMetadata)
 
 $ErrorActionPreference = "Stop"
 
