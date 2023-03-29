@@ -1,4 +1,4 @@
-param([System.Collections.Hashtable] $message, $TriggerMetadata)
+param([System.Collections.Hashtable] $serviceBusProvisionTeamsDiDMessage, $TriggerMetadata)
 
 $ErrorActionPreference = "Stop"
 
@@ -15,6 +15,6 @@ $graphToken, $teamsToken = Get-TeamsAccessTokens -ApplicationId $applicationId `
 
 New-TeamsItems -GraphToken $graphToken `
   -TeamsToken $teamsToken `
-  -UserPrincipalName $message.UserPrincipalName `
-  -TeamName $message.TeamName `
-  -ChannelName $message.ChannelName
+  -UserPrincipalName $serviceBusProvisionTeamsDiDMessage.UserPrincipalName `
+  -TeamName $serviceBusProvisionTeamsDiDMessage.TeamName `
+  -ChannelName $serviceBusProvisionTeamsDiDMessage.ChannelName
