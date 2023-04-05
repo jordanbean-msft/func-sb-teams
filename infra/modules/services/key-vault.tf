@@ -25,7 +25,7 @@ resource "azurerm_key_vault_secret" "function_aad_service_principal_client_id" {
   value        = local.function_aad_service_principal_client_id_secret_dummy_value
   key_vault_id = azurerm_key_vault.key_vault.id
 
-  #prevents Terraform from overriting the value of the secret
+  #prevents Terraform from overwriting the value of the secret
   lifecycle {
     ignore_changes = [value]
   }
@@ -36,7 +36,7 @@ resource "azurerm_key_vault_secret" "function_aad_service_principal_client_secre
   value        = local.function_aad_service_principal_client_secret_secret_dummy_value
   key_vault_id = azurerm_key_vault.key_vault.id
 
-  #prevents Terraform from overriting the value of the secret
+  #prevents Terraform from overwriting the value of the secret
   lifecycle {
     ignore_changes = [value]
   }

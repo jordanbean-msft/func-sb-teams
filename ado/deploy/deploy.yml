@@ -1,7 +1,13 @@
 parameters:
-  - name: functionAppName
+  - name: provisionTeamsFunctionAppName
+  - name: callbackFunctionAppName
   - name: artifactName
   - name: serviceConnectionName
+variables:
+  - name: provisionTeamsArchiveFileName
+    value: "provision-teams-build$(Build.BuildId).zip"
+  - name: callbackArchiveFileName
+    value: "callback-build$(Build.BuildId).zip"
 
 steps:
   - checkout: self
@@ -9,13 +15,26 @@ steps:
   - task: ArchiveFiles@2
     displayName: "Archive files"
     inputs:
-      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/src"
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/src/provision-teams"
       includeRootFolder: false
-      archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
+      archiveFile: "$(System.DefaultWorkingDirectory)/$(provisionTeamsArchiveFileName)"
+  - task: ArchiveFiles@2
+    displayName: "Archive files"
+    inputs:
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/src/callback"
+      includeRootFolder: false
+      archiveFile: "$(System.DefaultWorkingDirectory)/$(callbackArchiveFileName)"
   - task: AzureFunctionApp@1
     displayName: Deploy FunctionApp
     inputs:
       azureSubscription: ${{ parameters.serviceConnectionName }}
       appType: functionApp
-      appName: ${{ parameters.functionAppName }}
-      package: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
+      appName: ${{ parameters.provisionTeamsFunctionAppName }}
+      package: "$(System.DefaultWorkingDirectory)/$(provisionTeamsArchiveFileName)"
+  - task: AzureFunctionApp@1
+    displayName: Deploy FunctionApp
+    inputs:
+      azureSubscription: ${{ parameters.serviceConnectionName }}
+      appType: functionApp
+      appName: ${{ parameters.callbackFunctionAppName }}
+      package: "$(System.DefaultWorkingDirectory)/$(callbackArchiveFileName)"

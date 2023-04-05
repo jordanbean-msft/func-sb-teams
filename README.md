@@ -55,7 +55,7 @@ The Infrastructure as Code (IaC) is written in Terraform.
 1.  Put a message on the queue
 
     ```shell
-    curl -X POST -H "Content-Type: application/json" -H "Authorization: SharedAccessSignature ..." -d '{ "UserPrincipalName": "dwight.k.schrute@dunder-mifflin.com", "TeamName": "PowerShellCreatedTeam", "ChannelName": "PowerShellCreatedChannel"}' https://sb-funcsbteams-ussc-dev.servicebus.windows.net/provision-teams-did/messages
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ..." -d '{ "clientCallback": { "type": "webhook", "method": "POST", "uri": "http://localhost",     "token": "asdf" }, "request": { "userPrincipalName": "testTerraform@MngEnv472967.onmicrosoft.com", "teamName": "PowerShellCreatedTeam", "channelName": "PowerShellCreatedChannel"  }}' https://sb-funcsbteams-ussc-dev.servicebus.windows.net/provision-teams/messages
     ```
 
 ## Run locally

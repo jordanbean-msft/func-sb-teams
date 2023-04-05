@@ -26,7 +26,8 @@ stages:
                   parameters:
                     artifactName: ${{ variables.artifactName }}
                     serviceConnectionName: ${{ variables.devServiceConnectionName }}
-                    functionAppName: ${{ variables.devFunctionAppName }}
+                    provisionTeamsFunctionAppName: ${{ variables.devProvisionTeamsFunctionAppName }}
+                    callbackFunctionAppName: ${{ variables.devCallbackFunctionAppName }}
   # - stage: Prd
   #   dependsOn: Dev
   #   jobs:
@@ -42,4 +43,5 @@ stages:
   #             parameters:
   #               artifactName: ${{ variables.artifactName }}
   #               serviceConnectionName: ${{ variables.prdServiceConnectionName }}
-  #               functionAppName: ${{ variables.functionAppName }}
+  #               provisionTeamsFunctionAppName: ${{ variables.devProvisionTeamsFunctionAppName }}
+  #               callbackFunctionAppName: ${{ variables.devCallbackFunctionAppName }}

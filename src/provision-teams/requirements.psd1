@@ -2,6 +2,5 @@
 # See https://aka.ms/functionsmanageddependency for additional information.
 #
 @{
-    MicrosoftTeams    = '5.0.0'
-    'Microsoft.Graph' = '1.22.0'
+    MicrosoftTeams    = '5.1.0'
 }

@@ -29,7 +29,6 @@ function New-TeamsItems {
     -DisplayName $ChannelName
 
   Write-Information "Created channel ${ChannelName}"
-
 }
 
 Export-ModuleMember -Function New-TeamsItems

@@ -5,14 +5,25 @@ resource "azurerm_servicebus_namespace" "serviceBusNamespace" {
   sku                 = "Standard"
 }
 
-resource "azurerm_servicebus_topic" "serviceBusTopic" {
-  name         = local.service_bus_topic_name
+resource "azurerm_servicebus_topic" "provisionTeamsServiceBusTopic" {
+  name         = local.provision_teams_service_bus_topic_name
   namespace_id = azurerm_servicebus_namespace.serviceBusNamespace.id
 }
 
-resource "azurerm_servicebus_subscription" "serviceBusSubscription" {
-  name               = local.service_bus_subscription_name
-  topic_id           = azurerm_servicebus_topic.serviceBusTopic.id
+resource "azurerm_servicebus_topic" "callbackServiceBusTopic" {
+  name         = local.callback_service_bus_topic_name
+  namespace_id = azurerm_servicebus_namespace.serviceBusNamespace.id
+}
+
+resource "azurerm_servicebus_subscription" "provisionTeamsServiceBusSubscription" {
+  name               = local.provision_teams_service_bus_subscription_name
+  topic_id           = azurerm_servicebus_topic.provisionTeamsServiceBusTopic.id
+  max_delivery_count = 1
+}
+
+resource "azurerm_servicebus_subscription" "callbackServiceBusSubscription" {
+  name               = local.callback_service_bus_subscription_name
+  topic_id           = azurerm_servicebus_topic.callbackServiceBusTopic.id
   max_delivery_count = 1
 }
 

@@ -2,4 +2,5 @@ variables:
   devEnvironmentName: dev
   devResourceGroupName: rg-funcSbTeams-ussc-dev
   devServiceConnectionName: rg-funcSbTeams-ussc-dev
-  devFunctionAppName: func-funcSbTeams-ussc-dev
+  devProvisionTeamsFunctionAppName: func-provision-teams-funcSbTeams-ussc-dev
+  devCallbackAppName: func-callback-funcSbTeams-ussc-dev
